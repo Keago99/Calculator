@@ -2,6 +2,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: blue;
 }
 
 #calcContainer{
@@ -10,28 +11,51 @@ body{
     margin-top: 50px;
     width: 350px;
     height: 500px;
-    border-style: double;
+    border-style: solid;
     flex-direction: column;
+    background-color: rgb(87, 80, 80);
+    border-radius: 15px;
 }
 
 #screen{
     margin-top: 25px;
     width: 300px;
-    height: 75px;
+    height: 100px;
     border-style: double;
+    background-color: rgb(34, 30, 30);
+    border-radius: 15px;
 }
 
 #keypad{
     margin-top: 30px;
     width: 300px;
     height: 325px;
-    border-style: double;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
 }
 
 .calcButton{
+    display: flex;
     border-style: solid;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
 
+#num{
+    background-color: rgb(55, 160, 192);
+}
+
+#operator{
+    background-color: rgb(228, 206, 6);
+}
+
+#equals{
+    background-color: greenyellow;
+}
+
+#clear{
+    background-color: red;
 }

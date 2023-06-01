@@ -1,8 +1,8 @@
 var numbers = document.querySelectorAll('.num');
 var operators = document.querySelectorAll('.operator');
 var screen = document.querySelector(".numbersScreen");
-var num1 = null;
-var num2 = null;
+var numsArr = [];
+var operatorsArr = [];
 
 
 for (i = 0; i < numbers.length; i++){
@@ -13,18 +13,43 @@ for (i = 0; i < operators.length; i++){
     operators[i].addEventListener('click', addNumbers);
 }
 
+
 function addNumbers(){
     var text = screen.innerText;
-    var numbo = parseInt(screen.innerText);
-    if (num1 === null && text.length > 0){
-        num1 = numbo;
-        console.log("num1 added" + " " + num1);
+    if(text.length > 0)
+    {
+        numsArr.push(parseInt(text));
+
+        switch (this.id){
+            case "plus":
+                operatorsArr.push("plus");
+                console.log("added plus to operatorsArr");
+                text = null;
+                screen.innerText = "";
+                break;
+    
+            case "minus":
+                operatorsArr.push("minus");
+                console.log("added minus to operatorsArr");
+                text = null;
+                screen.innerText = "";
+                break;
+    
+            case "multiply":
+                operatorsArr.push("multiply");
+                console.log("added multiply to operatorsArr");
+                text = null;
+                screen.innerText = "";
+                break;
+    
+            case "divide":
+                operatorsArr.push("divide");
+                console.log("added divide to operatorsArr");
+                text = null;
+                screen.innerText = "";
+                break;
+        }
     }
-    else if (num2 === null && text.length > 0){
-        num2 = numbo;
-        console.log("num2 added" + " " + num2);
-    }
-    screen.innerHTML = "";
 }
 
 

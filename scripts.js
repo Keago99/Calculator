@@ -1,8 +1,13 @@
 var numbers = document.querySelectorAll('.num');
 var operators = document.querySelectorAll('.operator');
 var screen = document.querySelector(".numbersScreen");
+var equalsButton = document.querySelector("#equals");
+var clear = document.querySelector("#clear");
 var numsArr = [];
 var operatorsArr = [];
+var answer = "empty";
+var answerOnscreen = false;
+
 
 
 for (i = 0; i < numbers.length; i++){
@@ -13,12 +18,18 @@ for (i = 0; i < operators.length; i++){
     operators[i].addEventListener('click', addNumbers);
 }
 
+equalsButton.addEventListener('click', equalsOpp);
+
 
 function addNumbers(){
     var text = screen.innerText;
     if(text.length > 0)
     {
-        numsArr.push(parseInt(text));
+        if (answerOnscreen == false){
+            numsArr.push(parseInt(text));
+        }
+        
+        answerOnscreen = false;
 
         switch (this.id){
             case "plus":
@@ -52,6 +63,54 @@ function addNumbers(){
     }
 }
 
+function equalsOpp(){
+
+    if (numsArr.length < 1){
+        return;
+    }
+    
+    numsArr.push(parseInt(screen.innerText));
+    
+
+    for (let i = 0; i < operatorsArr.length; i++){
+        switch(operatorsArr[i]){
+
+            case "plus":
+               answer = numsArr[0] + numsArr[1];
+               numsArr.shift();
+               numsArr.shift();
+               numsArr.unshift(answer);
+               break;
+               
+            case "minus":
+                answer = numsArr[0] - numsArr[1];
+                numsArr.shift();
+                numsArr.shift();
+                break;
+
+            case "divide":
+                answer = numsArr[0] / numsArr[1];
+                numsArr.shift();
+                numsArr.shift();
+                numsArr.unshift(answer);
+                break;
+
+            case "multiply":
+                answer = numsArr[0] * numsArr[1];
+                numsArr.shift();
+                numsArr.shift();
+                numsArr.unshift(answer);
+                break;
+        }
+        
+    }
+
+    operatorsArr.length = 0;
+    numsArr.length = 1;
+
+    screen.innerText = parseInt(answer);
+    answerOnscreen = true;
+}
 
 function addScreen(){
     var text = screen.innerText;
@@ -59,4 +118,10 @@ function addScreen(){
         screen.append(this.innerHTML);
     }
 
+}
+
+function clearButton(){
+    screen.innerText = "";
+    numsArr.length = 0;
+    operatorsArr.length = 0; 
 }

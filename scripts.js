@@ -20,6 +20,8 @@ for (i = 0; i < operators.length; i++){
 
 equalsButton.addEventListener('click', equalsOpp);
 
+clear.addEventListener('click', clearButton);
+
 
 function addNumbers(){
     var text = screen.innerText;
@@ -124,4 +126,5 @@ function clearButton(){
     screen.innerText = "";
     numsArr.length = 0;
     operatorsArr.length = 0; 
+    answerOnscreen = false;
 }
